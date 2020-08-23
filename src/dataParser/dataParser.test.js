@@ -12,4 +12,10 @@ describe("dataParser", () => {
 
     expect(parseInput(input)).toEqual([{ name: "Dan" }, { name: "Lauren" }])
   })
+
+  it("parses input with extra whitespace", () => {
+    const input = " Driver   Dan \n Driver   Lauren  "
+
+    expect(parseInput(input)).toEqual([{ name: "Dan" }, { name: "Lauren" }])
+  })
 })

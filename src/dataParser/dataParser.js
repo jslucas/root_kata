@@ -5,7 +5,8 @@ const parseDriverData = data => {
 const parseInput = input => {
   return input
     .split(/\n/)
-    .map(s => s.split(" "))
+    .filter(line => line.trim())
+    .map(line => line.trim().split(/\s+/))
     .map(parseDriverData)
 }
 
