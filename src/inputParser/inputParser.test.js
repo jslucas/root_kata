@@ -27,6 +27,12 @@ describe("dataParser", () => {
     ])
   })
 
+  it("ignores trips for drivers who are unregistered", () => {
+    const input = "Trip UnregisteredDan 07:15 07:45 17.3\n"
+
+    expect(parseInput(input)).toEqual([])
+  })
+
   it("parses input with extra whitespace", () => {
     const input = " Driver   Dan \n Driver   Lauren  "
 
