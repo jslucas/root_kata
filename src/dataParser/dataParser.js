@@ -1,5 +1,7 @@
 const parseInput = input => {
-  return { name: input.split(" ")[1] }
+  return input.split(/\n/).map(s => {
+    return { name: s.split(" ")[1] }
+  })
 }
 
 module.exports = { parseInput }
