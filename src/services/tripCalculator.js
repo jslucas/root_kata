@@ -1,12 +1,14 @@
 const moment = require("moment")
 
+const tripTime = trip => moment.duration(trip.end.diff(trip.start)).asMinutes() / 60
+
 const toTripTotals = (acc, trip) => {
-  const time = acc.time + moment.duration(trip.end.diff(trip.start)).asMinutes() / 60
+  const time = acc.time + tripTime(trip)
   const distance = acc.distance + trip.distance
   return { time, distance }
 }
 
-const ineligibleTrip = trip => !(trip.distance / (moment.duration(trip.end.diff(trip.start)).asMinutes() / 60) < 5)
+const ineligibleTrip = trip => !(trip.distance / tripTime(trip) < 5 || trip.distance / tripTime(trip) > 100)
 
 const calculateDriverTotals = drivers => {
   return drivers.map(driver => {
