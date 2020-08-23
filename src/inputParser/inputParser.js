@@ -1,3 +1,6 @@
+const isEmptyOrWhitespace = str => Boolean(str.trim())
+const splitCommand = str => str.trim().split(/\s+/)
+
 const parseDriverData = ([name]) => {
   return { name, trips: [] }
 }
@@ -22,15 +25,17 @@ const parseCommand = ([command, ...args]) => {
   }
 }
 
-const assignTripsToDrivers = (drivers, r, _, data) => {
-  if (r.trips) {
-    r.trips = data
-      .filter(t => t.driver === r.name)
-      .map(t => {
-        let { driver, ...tripWithoutDriverProp } = t
+const assignTripsToDrivers = (drivers, driver, _, data) => {
+  const isDriver = Boolean(driver.trips)
+
+  if (isDriver) {
+    driver.trips = data
+      .filter(trip => trip.driver === driver.name)
+      .map(trip => {
+        let { driver, ...tripWithoutDriverProp } = trip
         return tripWithoutDriverProp
       })
-    drivers.push(r)
+    drivers.push(driver)
   }
 
   return drivers
@@ -39,10 +44,10 @@ const assignTripsToDrivers = (drivers, r, _, data) => {
 const parseInput = input => {
   return input
     .split(/\n/)
-    .filter(line => line.trim())
-    .map(line => line.trim().split(/\s+/))
+    .filter(isEmptyOrWhitespace)
+    .map(splitCommand)
     .map(parseCommand)
     .reduce(assignTripsToDrivers, [])
 }
 
-module.exports = { parseInput }
+module.exports = parseInput

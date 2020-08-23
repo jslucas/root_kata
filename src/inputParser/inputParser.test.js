@@ -1,6 +1,6 @@
-const { parseInput } = require("./inputParser")
+const parseInput = require("./inputParser")
 
-describe("dataParser", () => {
+describe("inputParser", () => {
   const expectedParsedData = [
     { name: "Dan", trips: [] },
     { name: "Lauren", trips: [] }
