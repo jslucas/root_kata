@@ -24,4 +24,8 @@ describe("dataParser", () => {
 
     expect(parseInput(input)).toEqual([{ name: "Dan" }, { name: "Lauren" }])
   })
+
+  it("throws an error for an unknown command", () => {
+    expect(() => parseInput("nonsense")).toThrowError()
+  })
 })

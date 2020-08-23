@@ -17,6 +17,8 @@ const parseCommand = ([command, ...args]) => {
       return parseDriverData(args)
     case "Trip":
       return parseTripData(args)
+    default:
+      throw new Error(`Unable to parse command ${command} ${args}`)
   }
 }
 
