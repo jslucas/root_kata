@@ -1,0 +1,2 @@
+Assumptions:
+A driver will be registered with the `Driver` command before a `Trip` is entered. If that were to change I would probably add a `.sort()` after line 41 of `dataParser` to make sure that all drivers are processed before trip.
