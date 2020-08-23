@@ -1,5 +1,5 @@
 const parseDriverData = ([name]) => {
-  return { name }
+  return { name, trips: [] }
 }
 
 const parseTripData = ([driver, start, end, distance]) => {
@@ -22,12 +22,27 @@ const parseCommand = ([command, ...args]) => {
   }
 }
 
+const assignTripsToDrivers = (drivers, r, _, data) => {
+  if (r.trips) {
+    r.trips = data
+      .filter(t => t.driver === r.name)
+      .map(t => {
+        let { driver, ...tripWithoutDriverProp } = t
+        return tripWithoutDriverProp
+      })
+    drivers.push(r)
+  }
+
+  return drivers
+}
+
 const parseInput = input => {
   return input
     .split(/\n/)
     .filter(line => line.trim())
     .map(line => line.trim().split(/\s+/))
     .map(parseCommand)
+    .reduce(assignTripsToDrivers, [])
 }
 
 module.exports = { parseInput }

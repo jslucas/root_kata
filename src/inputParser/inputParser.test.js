@@ -1,12 +1,15 @@
 const { parseInput } = require("./inputParser")
 
 describe("dataParser", () => {
-  const expectedParsedData = [{ name: "Dan" }, { name: "Lauren" }]
+  const expectedParsedData = [
+    { name: "Dan", trips: [] },
+    { name: "Lauren", trips: [] }
+  ]
 
   it("parses a driver", () => {
     const input = "Driver Dan"
 
-    expect(parseInput(input)).toEqual([{ name: "Dan" }])
+    expect(parseInput(input)).toEqual([{ name: "Dan", trips: [] }])
   })
 
   it("parses mutliple drivers", () => {
@@ -15,10 +18,13 @@ describe("dataParser", () => {
     expect(parseInput(input)).toEqual(expectedParsedData)
   })
 
-  it("parses a trip", () => {
-    const input = "Trip Dan 07:15 07:45 17.3\n"
+  it("parses trips to drivers", () => {
+    const input = "Driver Dan\nDriver Lauren\nTrip Dan 07:15 07:45 17.3\n"
 
-    expect(parseInput(input)).toEqual([{ driver: "Dan", start: "07:15", end: "07:45", distance: "17.3" }])
+    expect(parseInput(input)).toEqual([
+      { name: "Dan", trips: [{ start: "07:15", end: "07:45", distance: "17.3" }] },
+      { name: "Lauren", trips: [] }
+    ])
   })
 
   it("parses input with extra whitespace", () => {
