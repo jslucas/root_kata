@@ -9,4 +9,8 @@ describe("tripCalculator", () => {
   it("totals the time for a driver's trips", () => {
     expect(calculateDriverTotals([driverDan])).toEqual([{ name: "Dan", totalTimeDriven: 8.0 }])
   })
+
+  it("doesn't explode if driver has no trips", () => {
+    expect(calculateDriverTotals([{ name: "Dan", trips: [] }])).toEqual([{ name: "Dan", totalTimeDriven: 0 }])
+  })
 })
