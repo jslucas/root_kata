@@ -9,7 +9,8 @@ const toTripTotals = (acc, trip) => {
 const calculateDriverTotals = drivers => {
   return drivers.map(driver => {
     const { time, distance } = driver.trips.reduce(toTripTotals, { time: 0, distance: 0 })
-    return { name: driver.name, distance, time }
+    const averageMph = distance && time ? distance / time : 0
+    return { name: driver.name, distance, averageMph }
   })
 }
 

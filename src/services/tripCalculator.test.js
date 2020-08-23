@@ -6,15 +6,15 @@ describe("tripCalculator", () => {
   const fiveHoursAtSeventyMph = { start: toMoment("05:00"), end: toMoment("10:00"), distance: 350 }
   const driverDan = { name: "Dan", trips: [threeHoursAtTenPointOneMph, fiveHoursAtSeventyMph] }
 
-  it("totals the time for a driver's trips", () => {
-    expect(calculateDriverTotals([driverDan])).toEqual([{ name: "Dan", distance: 380.3, time: 8.0 }])
+  it("totals the distance of a driver's trips", () => {
+    expect(calculateDriverTotals([driverDan])).toEqual([{ name: "Dan", distance: 380.3, averageMph: 47.5375 }])
   })
 
-  it("totals the distance of a driver's trips", () => {
-    expect(calculateDriverTotals([driverDan])).toEqual([{ name: "Dan", distance: 380.3, time: 8.0 }])
+  it("averages the overall speed", () => {
+    expect(calculateDriverTotals([driverDan])).toEqual([{ name: "Dan", distance: 380.3, averageMph: 47.5375 }])
   })
 
   it("doesn't explode if driver has no trips", () => {
-    expect(calculateDriverTotals([{ name: "Dan", trips: [] }])).toEqual([{ name: "Dan", distance: 0, time: 0 }])
+    expect(calculateDriverTotals([{ name: "Dan", trips: [] }])).toEqual([{ name: "Dan", distance: 0, averageMph: 0 }])
   })
 })
