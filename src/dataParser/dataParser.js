@@ -1,22 +1,22 @@
-const parseDriverData = data => {
-  return { name: data[1] }
+const parseDriverData = ([name]) => {
+  return { name }
 }
 
-const parseTripData = data => {
+const parseTripData = ([driver, start, end, distance]) => {
   return {
-    driver: data[1],
-    start: data[2],
-    end: data[3],
-    distance: data[4]
+    driver,
+    start,
+    end,
+    distance
   }
 }
 
-const parseCommand = command => {
-  switch (command[0]) {
+const parseCommand = ([command, ...args]) => {
+  switch (command) {
     case "Driver":
-      return parseDriverData(command)
+      return parseDriverData(args)
     case "Trip":
-      return parseTripData(command)
+      return parseTripData(args)
   }
 }
 
