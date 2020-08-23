@@ -1,5 +1,5 @@
 const parseInput = require("./inputParser")
-const moment = require("moment")
+const { toMoment } = require("../utils")
 
 describe("inputParser", () => {
   const expectedParsedData = [
@@ -23,7 +23,7 @@ describe("inputParser", () => {
     const input = "Driver Dan\nDriver Lauren\nTrip Dan 07:15 07:45 17.3\n"
 
     expect(parseInput(input)).toEqual([
-      { name: "Dan", trips: [{ start: moment("07:15", "hh:mm"), end: moment("07:45", "hh:mm"), distance: 17.3 }] },
+      { name: "Dan", trips: [{ start: toMoment("07:15"), end: toMoment("07:45"), distance: 17.3 }] },
       { name: "Lauren", trips: [] }
     ])
   })

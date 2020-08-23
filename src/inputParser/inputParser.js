@@ -1,4 +1,4 @@
-const moment = require("moment")
+const { toMoment } = require("../utils")
 
 const isEmptyOrWhitespace = str => Boolean(str.trim())
 const splitCommand = str => str.trim().split(/\s+/)
@@ -10,8 +10,8 @@ const parseDriverData = ([name]) => {
 const parseTripData = ([driver, start, end, distance]) => {
   return {
     driver,
-    start: moment(start, "hh:mm"),
-    end: moment(end, "hh:mm"),
+    start: toMoment(start),
+    end: toMoment(end),
     distance: parseFloat(distance)
   }
 }
