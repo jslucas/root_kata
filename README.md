@@ -68,10 +68,10 @@ Trip Dan 07:15 07:45 17.3
 => [ { name: "Dan", trips: [ { start: [object Moment], end: [object Moment] } ]} ]
 ```
 
-`tripCalculator` houses the business logic like filtering out trips above or below the mph threshold and aggregating the totals needed for our report.
+`tripCalculator` houses the business logic like filtering out trips above or below the mph threshold and calculating the properties needed for the report.
 
 ```
-=> { name: "Dan", distance: 17.3, averageMph: 34.6 }
+=> [ { name: "Dan", distance: 17.3, averageMph: 34.6 } ]
 ```
 
 `reportGenerator` only has the responsibility of sorting and formatting data.
