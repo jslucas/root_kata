@@ -31,13 +31,14 @@ const assignTripsToDrivers = (drivers, driver, _, data) => {
   const isDriver = Boolean(driver.trips)
 
   if (isDriver) {
-    driver.trips = data
+    const trips = data
       .filter(trip => trip.driver === driver.name)
       .map(trip => {
         let { driver, ...tripWithoutDriverProp } = trip
         return tripWithoutDriverProp
       })
-    drivers.push(driver)
+
+    return [...drivers, { ...driver, trips }]
   }
 
   return drivers
