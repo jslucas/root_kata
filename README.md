@@ -82,7 +82,7 @@ Trip Dan 07:15 07:45 17.3
 
 ### Testing
 
-I focused on behavioral testing as this solution focuses on immutability and pure functions-- this lets us avoid testing for side-effects and instead just focus on input and output. This helped me to continually break apart my functions so that each (exported) unit is primarily concerned with composition which I think helps keep things quickly readable.
+I focused on behavioral testing as this solution focuses on immutability and pure functions. Since I didn't have to worry about testing for side-effects and could focus on just the input/output, I was able to continually break apart my functions so that each (exported) unit is primarily concerned with composition which I think helps keep things quickly readable.
 
 ## Assumptions
 
