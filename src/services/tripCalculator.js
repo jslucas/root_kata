@@ -13,13 +13,13 @@ const toTripTotals = (acc, trip) => {
 
 const isEligibleTrip = trip => !(trip.distance / tripTime(trip) < MIN_MPH || trip.distance / tripTime(trip) > MAX_MPH)
 
-const calculateDriverTotals = drivers => {
-  return drivers.map(driver => {
-    const { time, distance } = driver.trips.filter(isEligibleTrip).reduce(toTripTotals, { time: 0, distance: 0 })
-    const averageMph = distance && time ? distance / time : 0
+const toDriverWithTotals = driver => {
+  const { time, distance } = driver.trips.filter(isEligibleTrip).reduce(toTripTotals, { time: 0, distance: 0 })
+  const averageMph = distance && time ? distance / time : 0
 
-    return { name: driver.name, distance, averageMph }
-  })
+  return { name: driver.name, distance, averageMph }
 }
+
+const calculateDriverTotals = drivers => drivers.map(toDriverWithTotals)
 
 module.exports = calculateDriverTotals
