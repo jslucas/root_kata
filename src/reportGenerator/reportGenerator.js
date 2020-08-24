@@ -1,6 +1,11 @@
 const generateReport = data => {
   const report = data
-    .map(driver => `${driver.name}: ${Math.round(driver.distance)} miles @ ${Math.round(driver.averageMph)} mph`)
+    .map(driver => {
+      if (!driver.averageMph) {
+        return `${driver.name}: 0 miles`
+      }
+      return `${driver.name}: ${Math.round(driver.distance)} miles @ ${Math.round(driver.averageMph)} mph`
+    })
     .join("\n")
   return report
 }
