@@ -9,6 +9,5 @@ const file = process.argv.slice(2)[0]
 fs.readFile(file, "utf8", (err, data) => {
   if (err) throw err
 
-  const report = R.pipe(parseInput, calculateDriverTotals, generateReport)(data)
-  console.log(report)
+  R.pipe(parseInput, calculateDriverTotals, generateReport, console.log)(data)
 })
